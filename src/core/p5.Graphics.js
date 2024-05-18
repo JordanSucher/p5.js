@@ -364,7 +364,7 @@ p5.Graphics = class extends p5.Element {
  * </div>
  */
   remove() {
-    if (this.elt.parentNode) {
+    if (this.elt && this.elt.parentNode) {
       this.elt.parentNode.removeChild(this.elt);
     }
     const idx = this._pInst._elements.indexOf(this);
@@ -374,6 +374,8 @@ p5.Graphics = class extends p5.Element {
     for (const elt_ev in this._events) {
       this.elt.removeEventListener(elt_ev, this._events[elt_ev]);
     }
+    this._renderer = undefined;
+    this.elt = undefined;
   }
 
 
